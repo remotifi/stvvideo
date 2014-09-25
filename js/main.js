@@ -479,11 +479,14 @@ $(
 		{
 			tokens = args[arg].split('=');
 
-			result[tokens[0]] = tokens[1];
+			tokens[0] == 'deviceConnectionUrl'
+				? result[tokens[0]] = decodeURIComponent(tokens[1])
+				: result[tokens[0]] = tokens[1];
+
 		}  
 
 		// ...
 
-		Session.open(decodeURIComponent(result['deviceConnectionUrl']), ['video']);
+		Session.open(result['deviceConnectionUrl'], ['video']);
 	}
 );
